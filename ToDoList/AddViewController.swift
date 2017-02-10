@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateTaskViewController: UIViewController {
     
     @IBOutlet weak var textNameField: UITextField!
-    @IBOutlet weak var importantSwitch: UISwitch!
-    
-    var previousVC = TasksViewController()
+    @IBOutlet weak var importantSwitch: UISwitch! 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +20,21 @@ class CreateTaskViewController: UIViewController {
         
     }
     
-    @IBAction func addTabbed(_ sender: UIButton) {
+    @IBAction func addTapped(_ sender: AnyObject) {
         // Create a Task from the outlet information
         
-        let task = Task()
+        let mgdContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let task = Task(context: mgdContext)
         task.name = textNameField.text!
         task.important = importantSwitch.isOn
-        previousVC.tasks.append(task)
-        previousVC.myTableView!.reloadData()
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        // Pop back
         
         navigationController!.popViewController(animated: true)
     }
+
 
 }

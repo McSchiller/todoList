@@ -19,9 +19,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        tasks = makeTasks()
-        
-        print(myTableView)
+        getTasks()
         myTableView.dataSource = self
         myTableView.delegate = self
         
@@ -62,28 +60,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             nextVC.previousVC = self
             
         }
-        if segue.identifier! == "addTask"{
-            let nextVC = segue.destination as! CreateTaskViewController
-            nextVC.previousVC = self
-            
-        }
         
     }
     
-    func makeTasks() -> [Task]{
-        let task1 = Task()
-        task1.name = "Mit Hund spazieren gehen"
-        task1.important = false
+    func getTasks(){
         
-        let task2 = Task()
-        task2.name = "Mit Katze spazieren gehen"
-        task2.important = false
-        
-        let task3 = Task()
-        task3.name = "Milch kaufen"
-        task3.important = true
-        
-        return [task3,task2,task1]
     }
     
    
