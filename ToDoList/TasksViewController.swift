@@ -12,7 +12,6 @@ import CoreData
 class TasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
     var tasks : [Task] = []
-    var selectedTask = 0
     
     @IBOutlet weak var myTableView: UITableView!
     
@@ -48,7 +47,6 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedTask = indexPath.row
         let task = tasks[indexPath.row]
         performSegue(withIdentifier: "selectTaskSegue", sender: task)
     }
@@ -60,7 +58,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "selectTaskSegue"{
             let nextVC = segue.destination as! CompleteTaskViewController
-            nextVC.task = sender as! Task
+            nextVC.task = sender as? Task
         }
         
     }
