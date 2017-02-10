@@ -129,7 +129,7 @@
                                 <fontDescription key="fontDescription" name="MalayalamSangamMN-Bold" family="Malayalam Sangam MN" pointSize="28"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="addTabbed:" destination="ZQt-PZ-MQa" eventType="touchUpInside" id="pzt-Fi-chw"/>
+                                    <action selector="addButtonTabbed:" destination="ZQt-PZ-MQa" eventType="touchUpInside" id="XPd-Dk-Kfy"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0q-hs-ENk">
@@ -144,7 +144,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aqa-bg-4Hv">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aqa-bg-4Hv">
                                 <rect key="frame" x="163" y="211" width="51" height="31"/>
                             </switch>
                         </subviews>

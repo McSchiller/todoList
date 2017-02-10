@@ -16,25 +16,22 @@ class CreateTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // Do any additional setup after loading the view.
     }
     
-    @IBAction func addTapped(_ sender: AnyObject) {
-        // Create a Task from the outlet information
+    @IBAction func addButtonTabbed(_ sender: Any) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        let mgdContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let task = Task(context: mgdContext)
+        let task = Task(context: context)
         task.name = textNameField.text!
         task.important = importantSwitch.isOn
-        
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         // Pop back
         
         navigationController!.popViewController(animated: true)
     }
-
+    
 
 }

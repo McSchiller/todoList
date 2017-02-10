@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
@@ -19,7 +20,6 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        getTasks()
         myTableView.dataSource = self
         myTableView.delegate = self
         
@@ -30,14 +30,18 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return tasks.count
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getTasks()
+        myTableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let task = tasks[indexPath.row]
-        
         if task.important {
-            cell.textLabel?.text = "❗️\(task.name)"
-        } else{
-            cell.textLabel?.text = "\(task.name)"
+            cell.textLabel?.text = "❗️\(task.name!)"
+        } else {
+            cell.textLabel?.text = task.name!
         }
         
         return cell
@@ -50,21 +54,26 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func addTabbed(_ sender: Any) {
-        performSegue(withIdentifier: "addTask", sender: self)
+        performSegue(withIdentifier: "addTask", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "selectTaskSegue"{
             let nextVC = segue.destination as! CompleteTaskViewController
             nextVC.task = sender as! Task
-            nextVC.previousVC = self
-            
         }
         
     }
     
     func getTasks(){
+        let mgdContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
+        do{
+           tasks = try mgdContext.fetch(Task.fetchRequest()) as! [Task]
+        } catch{
+            print("Database Error")
+        }
+       
     }
     
    
